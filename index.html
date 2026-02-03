@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Letiště ČR – prototyp</title>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    html, body { height: 100%; margin: 0; }
+    #app { display: grid; grid-template-columns: 360px 1fr; height: 100%; }
+    #sidebar {
+      padding: 12px;
+      border-right: 1px solid #ddd;
+      overflow: auto;
+      font-family: system-ui, sans-serif;
+    }
+    #map { height: 100%; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="sidebar">
+      <h2>Letiště ČR</h2>
+      <p>Pokud vidíš mapu vpravo, je to správně 👍</p>
+    </div>
+    <div id="map"></div>
+  </div>
+
+<script>
+  const map = L.map('map').setView([49.8, 15.5], 7);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+let airportsLayer;
+
+fetch('airports.geojson')
+  .then(res => res.json())
+  .then(data => {
+    airportsLayer = L.geoJSON(data, {
+      onEachFeature: (feature, layer) => {
+        const p = feature.properties;
+
+        layer.bindPopup(
+          `<b>${p.icao}</b><br>
+           ${p.name}<br>
+           RWY: ${p.rwy_len_m} m<br>
+           Povrch: ${p.surface}<br>
+           Osvětlení: ${p.lighting ? 'ano' : 'ne'}`
+        );
+      }
+    }).addTo(map);
+  });
+
+</script>
+
+</body>
+</html>

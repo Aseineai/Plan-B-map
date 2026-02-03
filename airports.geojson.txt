@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Letiště ČR – prototyp</title>
+
+  <!-- Leaflet (mapa) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    html, body { height: 100%; margin: 0; }
+    #app { display: grid; grid-template-columns: 360px 1fr; height: 100%; }
+    #sidebar { padding: 12px; border-right: 1px solid #ddd; overflow: auto; font-family: system-ui, sans-serif; }
+    #map { height: 100%; }
+    .label { font-size: 12px; color: #444; margin-top: 10px; }
+    input, select { width: 100%; padding: 8px; margin-top: 6px; }
+    .row { display:flex; gap:8px; align-items:center; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="sidebar">
+      <h2 style="margin:0 0 10px">Letiště ČR</h2>
+      <div class="label">Zatím jen mapa. Další krok: body + filtry.</div>
+    </div>
+    <div id="map"></div>
+  </div>
+
+  <script>
+    // Start mapy: střed ČR
+    const map = L.map('map').setView([49.8, 15.5], 7);
+
+    // Podklad OSM
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+  </script>
+</body>
+</html>
