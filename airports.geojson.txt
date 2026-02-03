@@ -40,3 +40,5 @@
   </script>
 </body>
 </html>
+Delete airports.geojson.txt
+
