@@ -1,0 +1,47 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Praha / Ruzyně",
+        "icao": "LKPR",
+        "rwy_len_m": 3715,
+        "surface": "asphalt",
+        "lighting": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.266, 50.101]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Brno / Tuřany",
+        "icao": "LKTB",
+        "rwy_len_m": 2650,
+        "surface": "asphalt",
+        "lighting": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [16.694, 49.151]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Praha / Letňany",
+        "icao": "LKLT",
+        "rwy_len_m": 860,
+        "surface": "grass",
+        "lighting": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.517, 50.133]
+      }
+    }
+  ]
+}
